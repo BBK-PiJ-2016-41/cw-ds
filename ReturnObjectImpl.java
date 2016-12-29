@@ -57,7 +57,7 @@ public class ReturnObjectImpl implements ReturnObject {
 		if (this.hasError()) {
 			return null;
 		} else {
-			return this.value;
+			return this.returnValue;
 		}
 	}
 }
