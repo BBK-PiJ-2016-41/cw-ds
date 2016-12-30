@@ -195,10 +195,26 @@ public class LinkedList implements List {
 			returnItem = new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
 			return returnItem;
 		}
-		ObjectPointer lastElement = findObject(this.size() - 1);
 		ObjectPointer insertItem = new ObjectPointer(item);
-		lastElement.setNext(insertItem);
+		if (head == null) {
+			head = insertItem;
+		} else {
+			ObjectPointer lastElement = findObject(this.size() - 1);
+			lastElement.setNext(insertItem);
+		}
 		returnItem = new ReturnObjectImpl(item);
 		return returnItem;
+	}
+	/**
+	* Prints all the items in the list on a single line, separated by a space.
+	*/
+	public void print() {
+		String output = "";
+		ObjectPointer current = head;
+		while (current != null) {
+			output += current.getValue().toString() + " ";
+			current = current.getNext();
+		}
+		System.out.println(output);
 	}
 }

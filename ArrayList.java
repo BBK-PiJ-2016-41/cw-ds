@@ -174,4 +174,16 @@ public class ArrayList implements List {
 			this.array = newArray;
 		}
 	}
+
+	/**
+	* Prints all the items in the list on a single line, separated by a space.
+	*/
+	public void print() {
+		String output = "";
+		int arraySize = this.size();
+		for (int i = 0; i < arraySize; i++) {
+			output += this.get(i).getReturnValue().toString() + " ";
+		}
+		System.out.println(output);
+	}
 }
