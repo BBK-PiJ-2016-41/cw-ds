@@ -31,7 +31,7 @@ public class ArrayList implements List {
 	 * @return true if the list is empty, false otherwise.
 	 */
 	public boolean isEmpty() {
-		if array[0] = null ? true : false;
+		return (array[0] == null) ? true : false;
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class ArrayList implements List {
 	 */
 	public int size() {
 		int counter = 0;
-		int arraySize = this.array.length();
+		int arraySize = this.array.length;
 		while (array[counter] != null && counter < arraySize) {
 			counter++;
 		}
@@ -58,7 +58,19 @@ public class ArrayList implements List {
 	 * @return the element or an appropriate error message,
 	 *         encapsulated in a ReturnObject
 	 */
-	public ReturnObject get(int index);
+	public ReturnObject get(int index) {
+		ReturnObject returnItem;
+		if (this.isEmpty()) {
+			returnItem = new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
+			return returnItem;
+		}
+		if (index < 0) {
+			returnItem = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+			return returnItem;
+		}
+		returnItem = new ReturnObjectImpl(array[index]);
+		return returnItem;
+	}
 
 	/**
 	 * Returns the elements at the given position and removes it
@@ -72,7 +84,21 @@ public class ArrayList implements List {
 	 * @return the element or an appropriate error message,
 	 *         encapsulated in a ReturnObject
 	 */
-	public ReturnObject remove(int index);
+	public ReturnObject remove(int index) {
+		ReturnObject returnItem;
+		if (this.isEmpty()) {
+			returnItem = new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
+			return returnItem;
+		}
+		if (index < 0) {
+			returnItem = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+			return returnItem;
+		}
+		returnItem = new ReturnObjectImpl(array[index]);
+		System.arraycopy(this.array, index + 1, this.array, index, this.size() - index);
+		this.resize();
+		return returnItem;
+	}
 
 	/**
 	 * Adds an element to the list, inserting it at the given
@@ -92,7 +118,22 @@ public class ArrayList implements List {
 	 * @return an ReturnObject, empty if the operation is successful
 	 *         or containing an appropriate error message otherwise
 	 */
-	public ReturnObject add(int index, Object item);
+	public ReturnObject add(int index, Object item) {
+		ReturnObject returnItem;
+		if (this.isEmpty()) {
+			returnItem = new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
+			return returnItem;
+		}
+		if (index < 0) {
+			returnItem = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+			return returnItem;
+		}
+		System.arraycopy(this.array, index, this.array, index + 1, this.size() - index);
+		array[index] = item;
+		returnItem = new ReturnObjectImpl(item);
+		this.resize();
+		return returnItem;
+	}
 
 	/**
 	 * Adds an element at the end of the list.
@@ -105,7 +146,17 @@ public class ArrayList implements List {
 	 * @return an ReturnObject, empty if the operation is successful
 	 *         or containing an appropriate error message otherwise
 	 */
-	public ReturnObject add(Object item);
+	public ReturnObject add(Object item) {
+		ReturnObject returnItem;
+		if (item == null) {
+			returnItem = new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
+			return returnItem;
+		}
+		array[this.size()] = item;
+		returnItem = new ReturnObjectImpl(item);
+		this.resize();
+		return returnItem;
+	}
 
 	/**
 	* Resizes the array if appropriate (if it is less than 25% full, the size will
@@ -113,13 +164,13 @@ public class ArrayList implements List {
 	*
 	*/
 	private void resize() {
-		if (array.size() > array.length() * 0.75) {
-			Object[] newArray = new Object[array.length() * 2];
-			System.arraycopy(array, 0, newArray, 0, array.size());
+		if (this.size() > array.length * 0.75) {
+			Object[] newArray = new Object[array.length * 2];
+			System.arraycopy(array, 0, newArray, 0, this.size());
 			this.array = newArray;
-		} else if (array.size() < array.length() * 0.25) {
-			Object[] newArray = new Object[Math.ceil(array.length() * 0.5)];
-			System.arraycopy(array, 0, newArray, 0, array.size());
+		} else if (this.size() < array.length * 0.25) {
+			Object[] newArray = new Object[(int) Math.ceil(array.length * 0.5)];
+			System.arraycopy(array, 0, newArray, 0, this.size());
 			this.array = newArray;
 		}
 	}

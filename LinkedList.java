@@ -65,7 +65,7 @@ public class LinkedList implements List {
 	 */
 	public ReturnObject get(int index) {
 		ReturnObject returnItem;
-		if (head == null) {
+		if (this.isEmpty()) {
 			returnItem = new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
 			return returnItem;
 		}
@@ -101,7 +101,7 @@ public class LinkedList implements List {
 	 */
 	public ReturnObject remove(int index){
 		ReturnObject returnItem;
-		if (head == null) {
+		if (this.isEmpty()) {
 			returnItem = new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
 			return returnItem;
 		}
