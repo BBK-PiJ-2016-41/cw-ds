@@ -1,19 +1,27 @@
 public class ListLauncher {
   public static void main (String[] args) {
-    LinkedList myLinkedList = new LinkedList();
+    FunctionalLinkedList myLinkedList = new FunctionalLinkedList();
     System.out.println(myLinkedList.isEmpty());
-    for (int i = 1; i <= 50; i++) {
+    for (int i = 1; i <= 5; i++) {
       myLinkedList.add(i);
     }
 
     myLinkedList.print();
-    System.out.println(myLinkedList.size());
-    System.out.println(myLinkedList.add(20,75).getReturnValue());
+    //System.out.println(myLinkedList.size());
+    //System.out.println(myLinkedList.add(20,75).getReturnValue());
+    //myLinkedList.print();
+    //System.out.println(myLinkedList.remove(20).getReturnValue());
+    //myLinkedList.print();
+    //System.out.println(myLinkedList.remove(95).getError());
+    FunctionalLinkedList rest = (FunctionalLinkedList) myLinkedList.rest();
+    rest.print();
+    /*FunctionalLinkedList secondList = new FunctionalLinkedList();
+    for (int i = 6; i <= 10; i++) {
+      secondList.add(i);
+    }
+    myLinkedList.concat(secondList);*/
     myLinkedList.print();
-    System.out.println(myLinkedList.remove(20).getReturnValue());
-    myLinkedList.print();
-    System.out.println(myLinkedList.remove(95).getError());
-
+    /*
     ArrayList myArrayList = new ArrayList();
     System.out.println(myArrayList.isEmpty());
     for (int i = 1; i <= 50; i++) {
@@ -27,5 +35,6 @@ public class ListLauncher {
     System.out.println(myArrayList.remove(20).getReturnValue());
     myArrayList.print();
     System.out.println(myArrayList.remove(95).getError());
+    */
   }
 }

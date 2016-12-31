@@ -131,7 +131,7 @@ public class LinkedList implements List {
 	* @param index the position at which the item can be found
 	* @return a pointer to the element
 	*/
-	private ObjectPointer findObject (int index) {
+	protected ObjectPointer findObject (int index) {
 		int counter = 0;
 		ObjectPointer current = this.head;
 		while (counter < index && current != null) {
@@ -167,6 +167,13 @@ public class LinkedList implements List {
 		}
 		if (index < 0 || index > this.size() - 1) {
 			returnItem = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+			return returnItem;
+		}
+		if (index == 0) {
+			ObjectPointer insert = new ObjectPointer(item);
+			insert.setNext(head);
+			head = insert;
+			returnItem = new ReturnObjectImpl(item);
 			return returnItem;
 		}
 		ObjectPointer element = findObject(index);
