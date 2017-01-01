@@ -19,7 +19,7 @@
  *
  * @author kathryn.buckley
  */
-public class LinkedList implements List {
+public class LinkedList extends SampleableListImpl implements List {
 	private ObjectPointer head;
 
 	public LinkedList() {
@@ -223,5 +223,9 @@ public class LinkedList implements List {
 			current = current.getNext();
 		}
 		System.out.println(output);
+	}
+	public SampleableList sample() {
+		SampleableList sampledList = super.sample();
+		return sampledList;
 	}
 }

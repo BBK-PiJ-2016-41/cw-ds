@@ -14,6 +14,9 @@
  * @author PiJ
  */
 public class FunctionalLinkedList extends LinkedList implements FunctionalList {
+    public FunctionalLinkedList () {
+      super();
+    }
     /**
      * Returns the element at the beginning of the list.
      *

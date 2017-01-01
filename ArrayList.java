@@ -19,7 +19,7 @@
  *
  * @author kathryn.buckley
  */
-public class ArrayList implements List {
+public class ArrayList extends SampleableListImpl implements List {
 	private Object[] array;
 
 	public ArrayList() {
@@ -185,5 +185,9 @@ public class ArrayList implements List {
 			output += this.get(i).getReturnValue().toString() + " ";
 		}
 		System.out.println(output);
+	}
+	public SampleableList sample() {
+		SampleableList sampledList = super.sample();
+		return sampledList;
 	}
 }
