@@ -43,5 +43,9 @@ public class ListLauncher {
     myArrayList.print();
     System.out.println(myArrayList.remove(95).getError());
     */
+    StackImpl myStack = new StackImpl(myArrayList);
+    myStack.pop();
+    myArrayList.print();
+    System.out.println(myStack.size());
   }
 }
