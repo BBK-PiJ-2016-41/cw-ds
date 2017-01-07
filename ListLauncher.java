@@ -1,3 +1,10 @@
+/**
+Things to test before Sunday:
+1. Handles null parameters
+2. Handles requests to items beyond scope of list
+3. StackImpl and ImprovedStackImpl work
+4. Handels requests to an empty list
+*/
 public class ListLauncher {
   public static void main (String[] args) {
     LinkedList myLinkedList = new LinkedList();
