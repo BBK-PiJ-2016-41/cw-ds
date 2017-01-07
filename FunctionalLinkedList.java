@@ -11,7 +11,7 @@
  * contain either an object or an error value of the right kind (as
  * defined in {@see ErrorMessage}).
  *
- * @author PiJ
+ * @author kathryn.buckley
  */
 public class FunctionalLinkedList extends LinkedList implements FunctionalList {
     public FunctionalLinkedList () {
@@ -30,7 +30,7 @@ public class FunctionalLinkedList extends LinkedList implements FunctionalList {
       if (this.isEmpty()) {
         returnItem = new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
       }
-      returnItem = new ReturnObjectImpl(this.get(0));
+      returnItem = this.get(0);
       return returnItem;
     }
 
@@ -47,11 +47,11 @@ public class FunctionalLinkedList extends LinkedList implements FunctionalList {
         return returnList;
       }
       Object first = this.remove(0).getReturnValue();
-      returnList.add(this.get(0).getReturnValue());
+      returnList.add(this.get(0).getReturnValue()).hasError();
       FunctionalList carrier = this.rest();
       returnList.concat((FunctionalLinkedList) carrier);
       this.add(0, first);
-      return (FunctionalList) returnList;
+      return returnList;
     }
 
     private void concat(FunctionalLinkedList next) {

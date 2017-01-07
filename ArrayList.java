@@ -64,7 +64,7 @@ public class ArrayList extends SampleableListImpl implements List {
 			returnItem = new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
 			return returnItem;
 		}
-		if (index < 0) {
+		if (index < 0 || index >= this.size()) {
 			returnItem = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
 			return returnItem;
 		}

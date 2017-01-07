@@ -11,7 +11,7 @@
  * contain either an object or an error value of the right kind (as
  * defined in {@see ErrorMessage}).
  *
- * @author PiJ
+ * @author kathryn.buckley
  */
 public class FunctionalArrayList extends ArrayList implements FunctionalList {
     public FunctionalArrayList () {
@@ -45,7 +45,7 @@ public class FunctionalArrayList extends ArrayList implements FunctionalList {
     public FunctionalList rest() {
       FunctionalList returnList = new FunctionalArrayList();
       int arrayLength = this.size();
-      for (int i = 0; i < arrayLength; i++) {
+      for (int i = 1; i < arrayLength; i++) {
         returnList.add(this.get(i).getReturnValue());
       }
       return returnList;

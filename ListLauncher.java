@@ -7,7 +7,7 @@ Things to test before Sunday:
 */
 public class ListLauncher {
   public static void main (String[] args) {
-    LinkedList myLinkedList = new LinkedList();
+    FunctionalLinkedList myLinkedList = new FunctionalLinkedList();
     System.out.println(myLinkedList.isEmpty());
     for (int i = 1; i <= 50; i++) {
       myLinkedList.add(i);
@@ -26,28 +26,31 @@ public class ListLauncher {
     //System.out.println(myLinkedList.remove(20).getReturnValue());
     //myLinkedList.print();
     //System.out.println(myLinkedList.remove(95).getError());
-    //FunctionalLinkedList rest = (FunctionalLinkedList) myLinkedList.rest();
-    //rest.print();
+    System.out.println(myLinkedList.head().getReturnValue());
+    //myLinkedList.print();
+    FunctionalList rest = myLinkedList.rest();
+    FunctionalLinkedList myRest = (FunctionalLinkedList) rest;
+    myRest.print();
     /*FunctionalLinkedList secondList = new FunctionalLinkedList();
     for (int i = 6; i <= 10; i++) {
       secondList.add(i);
     }
     myLinkedList.concat(secondList);*/
     //myLinkedList.print();
-
-    ArrayList myArrayList = new ArrayList();
+    /*
+    FunctionalArrayList myArrayList = new FunctionalArrayList();
     System.out.println(myArrayList.isEmpty());
     System.out.println(myArrayList.remove(5).getError());
-    for (int i = 1; i <= 50; i++) {
+    for (int i = 1; i <= 75; i++) {
       myArrayList.add(i);
     }
-    myArrayList.add(0, 250);
+    System.out.println(myArrayList.head().getReturnValue());
     myArrayList.print();
-    System.out.println(myArrayList.get(-1).getError());
+    System.out.println(myArrayList.get(52).getError());
     System.out.println(myArrayList.add(null).getError());
-    /*
-    SampleableList myList = myArrayList.sample();
-    ArrayList secondList = (ArrayList)myList;
+    */
+    SampleableList myList = myLinkedList.sample();
+    LinkedList secondList = (LinkedList)myList;
     secondList.print();
     /*
     System.out.println(myArrayList.size());
@@ -57,11 +60,13 @@ public class ListLauncher {
     myArrayList.print();
     System.out.println(myArrayList.remove(95).getError());
     */
+    /*
     ImprovedStackImpl myStack = new ImprovedStackImpl(myArrayList);
     myStack.pop();
     myArrayList.print();
     System.out.println(myStack.size());
     ImprovedStackImpl reverseStack = (ImprovedStackImpl) myStack.reverse();
     reverseStack.print();
+    */
   }
 }
