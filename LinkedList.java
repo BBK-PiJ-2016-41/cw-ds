@@ -69,7 +69,7 @@ public class LinkedList extends SampleableListImpl implements List {
 			returnItem = new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
 			return returnItem;
 		}
-		if (index < 0) {
+		if (index < 0 || index > this.size()) {
 			returnItem = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
 			return returnItem;
 		}
@@ -132,6 +132,9 @@ public class LinkedList extends SampleableListImpl implements List {
 	* @return a pointer to the element
 	*/
 	protected ObjectPointer findObject (int index) {
+		if (index > this.size()) {
+			return null;
+		}
 		int counter = 0;
 		ObjectPointer current = this.head;
 		while (counter < index && current != null) {
@@ -165,14 +168,19 @@ public class LinkedList extends SampleableListImpl implements List {
 			returnItem = new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
 			return returnItem;
 		}
-		if (index < 0 || index > this.size() - 1) {
+		if (index < 0 || index > this.size()) {
 			returnItem = new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+			return returnItem;
+		}
+		if (this.isEmpty()) {
+			this.head = new ObjectPointer(item);
+			returnItem = new ReturnObjectImpl(item);
 			return returnItem;
 		}
 		if (index == 0) {
 			ObjectPointer insert = new ObjectPointer(item);
-			insert.setNext(head);
-			head = insert;
+			insert.setNext(this.head);
+			this.head = insert;
 			returnItem = new ReturnObjectImpl(item);
 			return returnItem;
 		}

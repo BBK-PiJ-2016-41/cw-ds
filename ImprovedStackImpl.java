@@ -12,7 +12,7 @@
  * object or an error value of the right kind (as defined in {@see
  * ErrorMessage}).
  *
- * @author kathryn
+ * @author kathryn.buckley
  */
 public class ImprovedStackImpl implements ImprovedStack {
 
@@ -31,14 +31,11 @@ public class ImprovedStackImpl implements ImprovedStack {
 	 */
 	public ImprovedStack reverse() {
 		List returnList = new LinkedList();
-		List carrierList = new LinkedList();
 		int listSize = myStackContent.size();
 		for (int i = 0; i < listSize; i++) {
-			Object listItem = myStackContent.remove(0).getReturnValue();
+			Object listItem = myStackContent.get(i).getReturnValue();
 			returnList.add(0, listItem);
-			carrierList.add(listItem);
 		}
-		this.myStackContent = carrierList;
 		ImprovedStack returnStack = new ImprovedStackImpl(returnList);
 		return returnStack;
 	}
@@ -102,5 +99,10 @@ public class ImprovedStackImpl implements ImprovedStack {
 	 */
 	public ReturnObject pop() {
 		return myStackContent.remove(0);
+	}
+
+	public void print() {
+		LinkedList printList = (LinkedList) this.myStackContent;
+		printList.print();
 	}
 }
