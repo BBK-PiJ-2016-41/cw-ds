@@ -1,4 +1,20 @@
 Please see the general comments, some of which are applicable to your submission.
 The output of the various checking tools should be paid attention to although checkstyle is a little "aggressive".
 
-...
+See the general comments, re:
+
+* using packages going forward
+* using unit testing going forward
+* javadoc and comments @see and @inherit
+* Magic numbers vs constants (SampleableListImpl)
+* returning true/false when the expression already results in a boolean
+
+public boolean hasError() {
+		return this.error == null ? false : true;
+	}
+
+* Internal classes that should be "package" access or, even better, "private" access
+(e.g., ObjectPointer)
+* Default constructors that do exactly what the default versions would have done
+(e.g., FunctionalLinkedList)
+* 
